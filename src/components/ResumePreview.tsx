@@ -87,7 +87,7 @@ function ModernTemplate({ resumeData }: ResumeSectionProps) {
 function ClassicTemplate({ resumeData }: ResumeSectionProps) {
   return (
     <div className="space-y-4">
-      <div className="border-b-2 border-black pb-4">
+      <div className="pb-4">
         <PersonalInfoHeaderClassic resumeData={resumeData} />
       </div>
       <SummarySection resumeData={resumeData} />
@@ -143,11 +143,13 @@ function CorporateTemplate({ resumeData }: ResumeSectionProps) {
       </div>
       <div className="space-y-6">
         <SummarySection resumeData={resumeData} />
-        <div className="grid grid-cols-2 gap-6">
-          <WorkExperienceSection resumeData={resumeData} />
-          <div className="space-y-4">
-            <EducationSection resumeData={resumeData} />
-            <SkillsSection resumeData={resumeData} />
+        <div className="grid grid-cols-3 gap-8">
+          <div className="col-span-2">
+            <WorkExperienceSectionCorporate resumeData={resumeData} />
+          </div>
+          <div className="space-y-6">
+            <EducationSectionCorporate resumeData={resumeData} />
+            <SkillsSectionCorporate resumeData={resumeData} />
           </div>
         </div>
       </div>
@@ -176,19 +178,27 @@ function ElegantTemplate({ resumeData }: ResumeSectionProps) {
 
 // Header variations for different templates
 function PersonalInfoHeaderClassic({ resumeData }: ResumeSectionProps) {
-  const { firstName, lastName, jobTitle, city, country, phone, email } =
+  const { firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
     resumeData;
 
   return (
     <div className="space-y-2 text-center">
-      <h1 className="text-4xl font-bold uppercase tracking-wider">
+      <h1 
+        className="text-4xl font-bold uppercase tracking-wider"
+        style={{ color: colorHex }}
+      >
         {firstName} {lastName}
       </h1>
       {jobTitle && (
-        <p className="text-xl font-medium text-gray-700">{jobTitle}</p>
+        <p 
+          className="text-xl font-medium"
+          style={{ color: colorHex }}
+        >
+          {jobTitle}
+        </p>
       )}
       <p className="text-sm text-gray-600">
-        {city}
+        {city}                                                            
         {city && country ? ", " : ""}
         {country}
         {(city || country) && (phone || email) ? " • " : ""}
@@ -199,15 +209,25 @@ function PersonalInfoHeaderClassic({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderMinimal({ resumeData }: ResumeSectionProps) {
-  const { firstName, lastName, jobTitle, city, country, phone, email } =
+  const { firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
     resumeData;
 
   return (
     <div className="space-y-1">
-      <h1 className="text-2xl font-light">
+      <h1 
+        className="text-2xl font-light"
+        style={{ color: colorHex }}
+      >
         {firstName} {lastName}
       </h1>
-      {jobTitle && <p className="text-gray-600">{jobTitle}</p>}
+      {jobTitle && (
+        <p 
+          className="text-gray-600"
+          style={{ color: colorHex }}
+        >
+          {jobTitle}
+        </p>
+      )}
       <p className="text-xs text-gray-500">
         {[city, country, phone, email].filter(Boolean).join(" • ")}
       </p>
@@ -216,7 +236,7 @@ function PersonalInfoHeaderMinimal({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
-  const { photo, firstName, lastName, jobTitle, city, country, phone, email } =
+  const { photo, firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
     resumeData;
 
   const [photoSrc, setPhotoSrc] = useState<string>("");
@@ -249,11 +269,19 @@ function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
           />
         )}
         <div className="space-y-2">
-          <h1 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent">
+          <h1 
+            className="text-4xl font-bold"
+            style={{ color: colorHex }}
+          >
             {firstName} {lastName}
           </h1>
           {jobTitle && (
-            <p className="text-lg font-medium text-gray-700">{jobTitle}</p>
+            <p 
+              className="text-lg font-medium"
+              style={{ color: colorHex }}
+            >
+              {jobTitle}
+            </p>
           )}
           <p className="text-sm text-gray-600">
             {[city, country, phone, email].filter(Boolean).join(" • ")}
@@ -265,15 +293,25 @@ function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderCorporate({ resumeData }: ResumeSectionProps) {
-  const { firstName, lastName, jobTitle, city, country, phone, email } =
+  const { firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
     resumeData;
 
   return (
     <div className="space-y-2">
-      <h1 className="text-3xl font-bold text-white">
+      <h1 
+        className="text-3xl font-bold"
+        style={{ color: colorHex }}
+      >
         {firstName} {lastName}
       </h1>
-      {jobTitle && <p className="text-lg text-gray-300">{jobTitle}</p>}
+      {jobTitle && (
+        <p 
+          className="text-lg"
+          style={{ color: colorHex }}
+        >
+          {jobTitle}
+        </p>
+      )}
       <p className="text-sm text-gray-400">
         {[city, country, phone, email].filter(Boolean).join(" • ")}
       </p>
@@ -282,7 +320,7 @@ function PersonalInfoHeaderCorporate({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderElegant({ resumeData }: ResumeSectionProps) {
-  const { photo, firstName, lastName, jobTitle, city, country, phone, email } =
+  const { photo, firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
     resumeData;
 
   const [photoSrc, setPhotoSrc] = useState<string>("");
@@ -305,11 +343,19 @@ function PersonalInfoHeaderElegant({ resumeData }: ResumeSectionProps) {
     <div className="border-b border-gray-200 pb-6">
       <div className="flex items-end justify-between">
         <div className="space-y-1">
-          <h1 className="text-3xl font-light tracking-wide">
+          <h1 
+            className="text-3xl font-light tracking-wide"
+            style={{ color: colorHex }}
+          >
             {firstName} <span className="font-normal">{lastName}</span>
           </h1>
           {jobTitle && (
-            <p className="text-lg italic text-gray-600">{jobTitle}</p>
+            <p 
+              className="text-lg italic"
+              style={{ color: colorHex }}
+            >
+              {jobTitle}
+            </p>
           )}
           <p className="text-sm text-gray-500">
             {[city, country, phone, email].filter(Boolean).join(" • ")}
@@ -590,5 +636,101 @@ function SkillsSection({ resumeData }: ResumeSectionProps) {
         </div>
       </div>
     </>
+  );
+}
+
+// Corporate Template specific sections
+function WorkExperienceSectionCorporate({ resumeData }: ResumeSectionProps) {
+  const { workExperiences, colorHex } = resumeData;
+
+  const workExperiencesNotEmpty = workExperiences?.filter(
+    (exp) => Object.values(exp).filter(Boolean).length > 0,
+  );
+
+  if (!workExperiencesNotEmpty?.length) return null;
+
+  return (
+    <div className="space-y-4">
+      <div className="border-b-2 border-gray-300 pb-2">
+        <h3 className="text-xl font-bold text-gray-900">Work Experience</h3>
+      </div>
+      <div className="space-y-4">
+        {workExperiencesNotEmpty.map((exp, index) => (
+          <div key={index} className="space-y-2">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+              <h4 className="text-lg font-semibold text-gray-900">{exp.position}</h4>
+              {exp.startDate && (
+                <span className="text-sm text-gray-600">
+                  {exp.startDate && formatDate(exp.startDate, "MM/yyyy")} -{" "}
+                  {exp.endDate ? formatDate(exp.endDate, "MM/yyyy") : "Present"}
+                </span>
+              )}
+            </div>
+            <p className="text-sm font-medium text-gray-700">{exp.company}</p>
+            {exp.description && (
+              <div className="text-sm text-gray-600 leading-relaxed">{exp.description}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function EducationSectionCorporate({ resumeData }: ResumeSectionProps) {
+  const { educations, colorHex } = resumeData;
+
+  const educationsNotEmpty = educations?.filter(
+    (edu) => Object.values(edu).filter(Boolean).length > 0,
+  );
+
+  if (!educationsNotEmpty?.length) return null;
+
+  return (
+    <div className="space-y-3">
+      <div className="border-b-2 border-gray-300 pb-1">
+        <h3 className="text-lg font-bold text-gray-900">Education</h3>
+      </div>
+      <div className="space-y-3">
+        {educationsNotEmpty.map((edu, index) => (
+          <div key={index} className="space-y-1">
+            <div className="flex flex-col">
+              <h4 className="text-sm font-semibold text-gray-900">{edu.degree}</h4>
+              {edu.startDate && (
+                <span className="text-xs text-gray-600">
+                  {edu.startDate && formatDate(edu.startDate, "MM/yyyy")} -{" "}
+                  {edu.endDate ? formatDate(edu.endDate, "MM/yyyy") : "Present"}
+                </span>
+              )}
+            </div>
+            <p className="text-xs text-gray-700">{edu.school}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SkillsSectionCorporate({ resumeData }: ResumeSectionProps) {
+  const { skills, colorHex, borderStyle } = resumeData;
+
+  if (!skills?.length) return null;
+
+  return (
+    <div className="space-y-3">
+      <div className="border-b-2 border-gray-300 pb-1">
+        <h3 className="text-lg font-bold text-gray-900">Skills</h3>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill, index) => (
+          <Badge
+            key={index}
+            className="rounded-sm bg-gray-800 text-white hover:bg-gray-800 text-xs"
+          >
+            {skill}
+          </Badge>
+        ))}
+      </div>
+    </div>
   );
 }
