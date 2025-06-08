@@ -178,27 +178,32 @@ function ElegantTemplate({ resumeData }: ResumeSectionProps) {
 
 // Header variations for different templates
 function PersonalInfoHeaderClassic({ resumeData }: ResumeSectionProps) {
-  const { firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
-    resumeData;
+  const {
+    firstName,
+    lastName,
+    jobTitle,
+    city,
+    country,
+    phone,
+    email,
+    colorHex,
+  } = resumeData;
 
   return (
     <div className="space-y-2 text-center">
-      <h1 
+      <h1
         className="text-4xl font-bold uppercase tracking-wider"
         style={{ color: colorHex }}
       >
         {firstName} {lastName}
       </h1>
       {jobTitle && (
-        <p 
-          className="text-xl font-medium"
-          style={{ color: colorHex }}
-        >
+        <p className="text-xl font-medium" style={{ color: colorHex }}>
           {jobTitle}
         </p>
       )}
       <p className="text-sm text-gray-600">
-        {city}                                                            
+        {city}
         {city && country ? ", " : ""}
         {country}
         {(city || country) && (phone || email) ? " • " : ""}
@@ -209,22 +214,24 @@ function PersonalInfoHeaderClassic({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderMinimal({ resumeData }: ResumeSectionProps) {
-  const { firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
-    resumeData;
+  const {
+    firstName,
+    lastName,
+    jobTitle,
+    city,
+    country,
+    phone,
+    email,
+    colorHex,
+  } = resumeData;
 
   return (
     <div className="space-y-1">
-      <h1 
-        className="text-2xl font-light"
-        style={{ color: colorHex }}
-      >
+      <h1 className="text-2xl font-light" style={{ color: colorHex }}>
         {firstName} {lastName}
       </h1>
       {jobTitle && (
-        <p 
-          className="text-gray-600"
-          style={{ color: colorHex }}
-        >
+        <p className="text-gray-600" style={{ color: colorHex }}>
           {jobTitle}
         </p>
       )}
@@ -236,8 +243,17 @@ function PersonalInfoHeaderMinimal({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
-  const { photo, firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
-    resumeData;
+  const {
+    photo,
+    firstName,
+    lastName,
+    jobTitle,
+    city,
+    country,
+    phone,
+    email,
+    colorHex,
+  } = resumeData;
 
   const [photoSrc, setPhotoSrc] = useState<string>("");
   const [mounted, setMounted] = useState(false);
@@ -269,17 +285,11 @@ function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
           />
         )}
         <div className="space-y-2">
-          <h1 
-            className="text-4xl font-bold"
-            style={{ color: colorHex }}
-          >
+          <h1 className="text-4xl font-bold" style={{ color: colorHex }}>
             {firstName} {lastName}
           </h1>
           {jobTitle && (
-            <p 
-              className="text-lg font-medium"
-              style={{ color: colorHex }}
-            >
+            <p className="text-lg font-medium" style={{ color: colorHex }}>
               {jobTitle}
             </p>
           )}
@@ -293,22 +303,24 @@ function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderCorporate({ resumeData }: ResumeSectionProps) {
-  const { firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
-    resumeData;
+  const {
+    firstName,
+    lastName,
+    jobTitle,
+    city,
+    country,
+    phone,
+    email,
+    colorHex,
+  } = resumeData;
 
   return (
     <div className="space-y-2">
-      <h1 
-        className="text-3xl font-bold"
-        style={{ color: colorHex }}
-      >
+      <h1 className="text-3xl font-bold" style={{ color: colorHex }}>
         {firstName} {lastName}
       </h1>
       {jobTitle && (
-        <p 
-          className="text-lg"
-          style={{ color: colorHex }}
-        >
+        <p className="text-lg" style={{ color: colorHex }}>
           {jobTitle}
         </p>
       )}
@@ -320,8 +332,17 @@ function PersonalInfoHeaderCorporate({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderElegant({ resumeData }: ResumeSectionProps) {
-  const { photo, firstName, lastName, jobTitle, city, country, phone, email, colorHex } =
-    resumeData;
+  const {
+    photo,
+    firstName,
+    lastName,
+    jobTitle,
+    city,
+    country,
+    phone,
+    email,
+    colorHex,
+  } = resumeData;
 
   const [photoSrc, setPhotoSrc] = useState<string>("");
   const [mounted, setMounted] = useState(false);
@@ -343,17 +364,14 @@ function PersonalInfoHeaderElegant({ resumeData }: ResumeSectionProps) {
     <div className="border-b border-gray-200 pb-6">
       <div className="flex items-end justify-between">
         <div className="space-y-1">
-          <h1 
+          <h1
             className="text-3xl font-light tracking-wide"
             style={{ color: colorHex }}
           >
             {firstName} <span className="font-normal">{lastName}</span>
           </h1>
           {jobTitle && (
-            <p 
-              className="text-lg italic"
-              style={{ color: colorHex }}
-            >
+            <p className="text-lg italic" style={{ color: colorHex }}>
               {jobTitle}
             </p>
           )}
@@ -641,7 +659,7 @@ function SkillsSection({ resumeData }: ResumeSectionProps) {
 
 // Corporate Template specific sections
 function WorkExperienceSectionCorporate({ resumeData }: ResumeSectionProps) {
-  const { workExperiences, colorHex } = resumeData;
+  const { workExperiences } = resumeData;
 
   const workExperiencesNotEmpty = workExperiences?.filter(
     (exp) => Object.values(exp).filter(Boolean).length > 0,
@@ -658,7 +676,9 @@ function WorkExperienceSectionCorporate({ resumeData }: ResumeSectionProps) {
         {workExperiencesNotEmpty.map((exp, index) => (
           <div key={index} className="space-y-2">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-              <h4 className="text-lg font-semibold text-gray-900">{exp.position}</h4>
+              <h4 className="text-lg font-semibold text-gray-900">
+                {exp.position}
+              </h4>
               {exp.startDate && (
                 <span className="text-sm text-gray-600">
                   {exp.startDate && formatDate(exp.startDate, "MM/yyyy")} -{" "}
@@ -668,7 +688,9 @@ function WorkExperienceSectionCorporate({ resumeData }: ResumeSectionProps) {
             </div>
             <p className="text-sm font-medium text-gray-700">{exp.company}</p>
             {exp.description && (
-              <div className="text-sm text-gray-600 leading-relaxed">{exp.description}</div>
+              <div className="text-sm leading-relaxed text-gray-600">
+                {exp.description}
+              </div>
             )}
           </div>
         ))}
@@ -678,7 +700,7 @@ function WorkExperienceSectionCorporate({ resumeData }: ResumeSectionProps) {
 }
 
 function EducationSectionCorporate({ resumeData }: ResumeSectionProps) {
-  const { educations, colorHex } = resumeData;
+  const { educations } = resumeData;
 
   const educationsNotEmpty = educations?.filter(
     (edu) => Object.values(edu).filter(Boolean).length > 0,
@@ -695,7 +717,9 @@ function EducationSectionCorporate({ resumeData }: ResumeSectionProps) {
         {educationsNotEmpty.map((edu, index) => (
           <div key={index} className="space-y-1">
             <div className="flex flex-col">
-              <h4 className="text-sm font-semibold text-gray-900">{edu.degree}</h4>
+              <h4 className="text-sm font-semibold text-gray-900">
+                {edu.degree}
+              </h4>
               {edu.startDate && (
                 <span className="text-xs text-gray-600">
                   {edu.startDate && formatDate(edu.startDate, "MM/yyyy")} -{" "}
@@ -712,7 +736,7 @@ function EducationSectionCorporate({ resumeData }: ResumeSectionProps) {
 }
 
 function SkillsSectionCorporate({ resumeData }: ResumeSectionProps) {
-  const { skills, colorHex, borderStyle } = resumeData;
+  const { skills } = resumeData;
 
   if (!skills?.length) return null;
 
@@ -725,7 +749,7 @@ function SkillsSectionCorporate({ resumeData }: ResumeSectionProps) {
         {skills.map((skill, index) => (
           <Badge
             key={index}
-            className="rounded-sm bg-gray-800 text-white hover:bg-gray-800 text-xs"
+            className="rounded-sm bg-gray-800 text-xs text-white hover:bg-gray-800"
           >
             {skill}
           </Badge>
