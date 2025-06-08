@@ -45,11 +45,21 @@ export default function ResumePreview({
         ref={contentRef}
         id="resumePreviewContent"
       >
-        {templateId === "classic" && <ClassicTemplate resumeData={resumeData} />}
-        {templateId === "minimal" && <MinimalTemplate resumeData={resumeData} />}
-        {templateId === "creative" && <CreativeTemplate resumeData={resumeData} />}
-        {templateId === "corporate" && <CorporateTemplate resumeData={resumeData} />}
-        {templateId === "elegant" && <ElegantTemplate resumeData={resumeData} />}
+        {templateId === "classic" && (
+          <ClassicTemplate resumeData={resumeData} />
+        )}
+        {templateId === "minimal" && (
+          <MinimalTemplate resumeData={resumeData} />
+        )}
+        {templateId === "creative" && (
+          <CreativeTemplate resumeData={resumeData} />
+        )}
+        {templateId === "corporate" && (
+          <CorporateTemplate resumeData={resumeData} />
+        )}
+        {templateId === "elegant" && (
+          <ElegantTemplate resumeData={resumeData} />
+        )}
         {templateId === "modern" && <ModernTemplate resumeData={resumeData} />}
       </div>
     </div>
@@ -106,7 +116,7 @@ function MinimalTemplate({ resumeData }: ResumeSectionProps) {
 // Creative Template
 function CreativeTemplate({ resumeData }: ResumeSectionProps) {
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 -m-6">
+    <div className="-m-6 bg-gradient-to-br from-blue-50 to-purple-50 p-6">
       <div className="space-y-6">
         <PersonalInfoHeaderCreative resumeData={resumeData} />
         <div className="grid grid-cols-3 gap-6">
@@ -128,7 +138,7 @@ function CreativeTemplate({ resumeData }: ResumeSectionProps) {
 function CorporateTemplate({ resumeData }: ResumeSectionProps) {
   return (
     <div className="space-y-6">
-      <div className="bg-gray-900 text-white p-6 -m-6 mb-6">
+      <div className="-m-6 mb-6 bg-gray-900 p-6 text-white">
         <PersonalInfoHeaderCorporate resumeData={resumeData} />
       </div>
       <div className="space-y-6">
@@ -166,10 +176,11 @@ function ElegantTemplate({ resumeData }: ResumeSectionProps) {
 
 // Header variations for different templates
 function PersonalInfoHeaderClassic({ resumeData }: ResumeSectionProps) {
-  const { firstName, lastName, jobTitle, city, country, phone, email } = resumeData;
+  const { firstName, lastName, jobTitle, city, country, phone, email } =
+    resumeData;
 
   return (
-    <div className="text-center space-y-2">
+    <div className="space-y-2 text-center">
       <h1 className="text-4xl font-bold uppercase tracking-wider">
         {firstName} {lastName}
       </h1>
@@ -188,16 +199,15 @@ function PersonalInfoHeaderClassic({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderMinimal({ resumeData }: ResumeSectionProps) {
-  const { firstName, lastName, jobTitle, city, country, phone, email } = resumeData;
+  const { firstName, lastName, jobTitle, city, country, phone, email } =
+    resumeData;
 
   return (
     <div className="space-y-1">
       <h1 className="text-2xl font-light">
         {firstName} {lastName}
       </h1>
-      {jobTitle && (
-        <p className="text-gray-600">{jobTitle}</p>
-      )}
+      {jobTitle && <p className="text-gray-600">{jobTitle}</p>}
       <p className="text-xs text-gray-500">
         {[city, country, phone, email].filter(Boolean).join(" • ")}
       </p>
@@ -206,17 +216,8 @@ function PersonalInfoHeaderMinimal({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
-  const {
-    photo,
-    firstName,
-    lastName,
-    jobTitle,
-    city,
-    country,
-    phone,
-    email,
-    colorHex,
-  } = resumeData;
+  const { photo, firstName, lastName, jobTitle, city, country, phone, email } =
+    resumeData;
 
   const [photoSrc, setPhotoSrc] = useState<string>("");
   const [mounted, setMounted] = useState(false);
@@ -236,7 +237,7 @@ function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
 
   return (
     <div className="relative">
-      <div className="absolute -top-2 -left-2 w-32 h-32 rounded-full bg-gradient-to-r from-blue-400 to-purple-600 opacity-20"></div>
+      <div className="absolute -left-2 -top-2 h-32 w-32 rounded-full bg-gradient-to-r from-blue-400 to-purple-600 opacity-20"></div>
       <div className="relative flex items-center gap-6">
         {mounted && photoSrc && (
           <Image
@@ -244,11 +245,11 @@ function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
             width={120}
             height={120}
             alt="Author photo"
-            className="aspect-square object-cover rounded-2xl shadow-lg"
+            className="aspect-square rounded-2xl object-cover shadow-lg"
           />
         )}
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent">
             {firstName} {lastName}
           </h1>
           {jobTitle && (
@@ -264,16 +265,15 @@ function PersonalInfoHeaderCreative({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderCorporate({ resumeData }: ResumeSectionProps) {
-  const { firstName, lastName, jobTitle, city, country, phone, email } = resumeData;
+  const { firstName, lastName, jobTitle, city, country, phone, email } =
+    resumeData;
 
   return (
     <div className="space-y-2">
       <h1 className="text-3xl font-bold text-white">
         {firstName} {lastName}
       </h1>
-      {jobTitle && (
-        <p className="text-lg text-gray-300">{jobTitle}</p>
-      )}
+      {jobTitle && <p className="text-lg text-gray-300">{jobTitle}</p>}
       <p className="text-sm text-gray-400">
         {[city, country, phone, email].filter(Boolean).join(" • ")}
       </p>
@@ -282,17 +282,8 @@ function PersonalInfoHeaderCorporate({ resumeData }: ResumeSectionProps) {
 }
 
 function PersonalInfoHeaderElegant({ resumeData }: ResumeSectionProps) {
-  const {
-    photo,
-    firstName,
-    lastName,
-    jobTitle,
-    city,
-    country,
-    phone,
-    email,
-    colorHex,
-  } = resumeData;
+  const { photo, firstName, lastName, jobTitle, city, country, phone, email } =
+    resumeData;
 
   const [photoSrc, setPhotoSrc] = useState<string>("");
   const [mounted, setMounted] = useState(false);
@@ -330,7 +321,7 @@ function PersonalInfoHeaderElegant({ resumeData }: ResumeSectionProps) {
             width={80}
             height={80}
             alt="Author photo"
-            className="aspect-square object-cover rounded-full"
+            className="aspect-square rounded-full object-cover"
           />
         )}
       </div>
@@ -346,10 +337,10 @@ function SkillsSectionMinimal({ resumeData }: ResumeSectionProps) {
 
   return (
     <div className="space-y-2">
-      <h3 className="text-lg font-light border-b border-gray-200 pb-1">Skills</h3>
-      <div className="text-sm">
-        {skills.join(" • ")}
-      </div>
+      <h3 className="border-b border-gray-200 pb-1 text-lg font-light">
+        Skills
+      </h3>
+      <div className="text-sm">{skills.join(" • ")}</div>
     </div>
   );
 }
@@ -495,11 +486,8 @@ function WorkExperienceSection({ resumeData }: ResumeSectionProps) {
               <span>{exp.position}</span>
               {exp.startDate && (
                 <span>
-                  {exp.startDate &&
-                    formatDate(exp.startDate, "MM/yyyy")} -{" "}
-                  {exp.endDate
-                    ? formatDate(exp.endDate, "MM/yyyy")
-                    : "Present"}
+                  {exp.startDate && formatDate(exp.startDate, "MM/yyyy")} -{" "}
+                  {exp.endDate ? formatDate(exp.endDate, "MM/yyyy") : "Present"}
                 </span>
               )}
             </div>
@@ -546,11 +534,8 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
               <span>{edu.degree}</span>
               {edu.startDate && (
                 <span>
-                  {edu.startDate &&
-                    formatDate(edu.startDate, "MM/yyyy")} -{" "}
-                  {edu.endDate
-                    ? formatDate(edu.endDate, "MM/yyyy")
-                    : "Present"}
+                  {edu.startDate && formatDate(edu.startDate, "MM/yyyy")} -{" "}
+                  {edu.endDate ? formatDate(edu.endDate, "MM/yyyy") : "Present"}
                 </span>
               )}
             </div>
